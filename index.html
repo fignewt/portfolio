@@ -1101,23 +1101,24 @@
 
         @media (max-width: 480px) {
             section {
-                padding: 30px 15px;
+                padding: 20px 12px;
                 min-height: auto;
-                padding-top: 100px;
+                padding-top: 90px;
             }
 
             h1 {
-                font-size: 45px;
+                font-size: 48px;
                 margin-bottom: 15px;
+                letter-spacing: 1px;
             }
 
             h2 {
-                font-size: 32px;
-                margin-bottom: 25px;
+                font-size: 36px;
+                margin-bottom: 20px;
             }
 
             h3 {
-                font-size: 20px;
+                font-size: 22px;
                 margin-bottom: 15px;
             }
 
@@ -1127,65 +1128,70 @@
 
             section p {
                 font-size: 15px;
-            }
-
-            /* Weather Widget Extra Small */
-            .weather-widget {
-                top: 10px;
-                left: 10px;
-                padding: 10px 12px;
-                border-radius: 8px;
-            }
-
-            .weather-widget i {
-                font-size: 20px;
-            }
-
-            .weather-temp {
-                font-size: 14px;
-            }
-
-            .weather-location {
-                font-size: 10px;
+                line-height: 1.5;
             }
 
             /* Navigation Extra Small */
             nav {
-                top: 10px;
+                top: 12px;
                 left: 50%;
                 transform: translateX(-50%);
-                padding: 8px 10px;
-                gap: 8px;
-                border-radius: 8px;
+                padding: 10px 12px;
+                gap: 10px;
+                border-radius: 10px;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                max-width: calc(100vw - 24px);
             }
 
             nav a {
-                font-size: 11px;
+                font-size: 12px;
                 gap: 4px;
+                white-space: nowrap;
             }
 
             nav a i {
                 font-size: 14px;
             }
 
+            /* Control buttons - stack vertically on right */
+            #contactBtn {
+                top: auto;
+                bottom: 30px;
+                right: 20px;
+            }
+
+            #themeToggle {
+                top: auto;
+                bottom: 90px;
+                right: 20px;
+            }
+
+            .nav-btn {
+                width: 44px;
+                height: 44px;
+                padding: 8px;
+                font-size: 16px;
+            }
+
             /* Skills Grid Extra Small */
             .skills-grid {
-                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-                gap: 10px;
+                grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+                gap: 12px;
             }
 
             .skill-card {
-                padding: 12px 8px;
+                padding: 14px 10px;
                 border-radius: 8px;
             }
 
             .skill-card i {
-                font-size: 24px;
-                margin-bottom: 6px;
+                font-size: 26px;
+                margin-bottom: 8px;
             }
 
             .skill-card h4 {
-                font-size: 12px;
+                font-size: 13px;
             }
 
             /* Gallery Extra Small */
@@ -1195,22 +1201,26 @@
             }
 
             .gallery-item {
-                padding: 25px 12px;
+                padding: 25px 15px;
+                border-radius: 8px;
             }
 
             .gallery-item i {
-                font-size: 40px;
+                font-size: 44px;
+                margin-bottom: 12px;
             }
 
             .gallery-item h4 {
-                font-size: 15px;
+                font-size: 16px;
             }
 
             /* Contact Extra Small */
             .contact-item {
-                padding: 12px;
-                margin: 12px 0;
+                padding: 14px;
+                margin: 10px 0;
                 gap: 12px;
+                flex-direction: column;
+                text-align: center;
             }
 
             .contact-item i {
@@ -1223,10 +1233,18 @@
 
             .content-wrapper {
                 max-width: 100%;
+                width: 100%;
             }
 
             .about-content {
                 max-width: 100%;
+                width: 100%;
+            }
+
+            /* Lily Pad - reduce opacity on small mobile */
+            .lily-pad.about,
+            .lily-pad.skills {
+                opacity: 0.3;
             }
         }
     </style>
