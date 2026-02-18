@@ -1521,6 +1521,8 @@
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                     gameStartScreen.classList.add('hidden');
                     setTimeout(() => { gameStartScreen.style.display = 'none'; }, 600);
+                    // Mark boot sequence as seen
+                    sessionStorage.setItem('bootSequenceSeen', 'true');
                 }
             }
 
@@ -1528,8 +1530,19 @@
             gameStartScreen.addEventListener('click', startHandler);
         }
 
-        // Start typing on load
-        typeLine();
+        // Check if boot sequence was already shown in this session
+        if (sessionStorage.getItem('bootSequenceSeen')) {
+            // Skip boot sequence and show home immediately
+            gameStartScreen.classList.add('hidden');
+            gameStartScreen.style.display = 'none';
+            const homeSection = document.getElementById('home');
+            if (homeSection) {
+                homeSection.classList.add('boot-fade');
+            }
+        } else {
+            // Start typing on load (only first time in session)
+            typeLine();
+        }
 
         // Retro beep using WebAudio API
         function playBeep(freq = 880, duration = 0.12, volume = 0.05) {
