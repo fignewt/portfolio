@@ -856,51 +856,6 @@
             margin-bottom: 20px;
         }
 
-        /* Audio Control */
-        .audio-toggle {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(26, 31, 46, 0.9);
-            border: 1px solid rgba(52, 152, 219, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 99;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-
-        .audio-toggle:hover {
-            background: rgba(52, 152, 219, 0.2);
-            border-color: rgba(52, 152, 219, 0.5);
-            transform: scale(1.1);
-        }
-
-        .audio-toggle i {
-            font-size: 20px;
-            color: #3498db;
-            transition: color 0.3s ease;
-        }
-
-        .audio-toggle.playing i {
-            color: #2ecc71;
-        }
-
-        .audio-toggle.playing::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 2px solid #2ecc71;
-            border-radius: 50%;
-            animation: pulse 1.5s infinite;
-        }
-
         @keyframes pulse {
             0% {
                 transform: scale(1);
@@ -1314,16 +1269,6 @@
             <div id="terminalLines" class="terminal-lines" aria-hidden="false"></div>
         </div>
     </div>
-    <!-- Background Ambient Music -->
-    <audio id="ambientAudio" loop volume="0.7">
-        <source src="https://pixabay.com/download/audio/2022/03/24/ambient-meditative-background-music-11993.mp3" type="audio/mpeg">
-    </audio>
-
-    <!-- Audio Toggle Button -->
-    <div class="audio-toggle" id="audioToggle" title="Toggle ambient music">
-        <i class="fas fa-volume-mute"></i>
-    </div>
-
     <nav>
         <a href="#home" class="nav-link active"><i class="fas fa-home"></i>Home</a>
         <a href="#about" class="nav-link"><i class="fas fa-user"></i>About</a>
@@ -1360,34 +1305,6 @@
         });
 
         // Weather widget removed (was using geolocation & Open-Meteo)
-
-        // Audio Control
-        const audioToggle = document.getElementById('audioToggle');
-        const ambientAudio = document.getElementById('ambientAudio');
-        let isPlaying = false;
-
-        audioToggle.addEventListener('click', () => {
-            if (isPlaying) {
-                ambientAudio.pause();
-                audioToggle.classList.remove('playing');
-                audioToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
-                isPlaying = false;
-            } else {
-                ambientAudio.play().catch(err => {
-                    console.log('Audio playback failed:', err);
-                });
-                audioToggle.classList.add('playing');
-                audioToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
-                isPlaying = true;
-            }
-        });
-
-        // Update audio state when audio ends (if not looping)
-        ambientAudio.addEventListener('ended', () => {
-            audioToggle.classList.remove('playing');
-            audioToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
-            isPlaying = false;
-        });
 
         // Game Start Screen - Terminal boot sequence
         const gameStartScreen = document.getElementById('gameStartScreen');
