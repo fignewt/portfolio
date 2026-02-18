@@ -546,6 +546,83 @@
 
         .nav-btn:hover { background: rgba(52,152,219,0.12); color: #3498db; transform: translateY(-2px); }
 
+        /* Mobile Hamburger Menu */
+        .nav-toggle {
+            display: none;
+            position: fixed;
+            top: 14px;
+            left: 16px;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 101;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-toggle span {
+            width: 24px;
+            height: 2px;
+            background: #3498db;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Mobile Nav Dropdown */
+        .nav-dropdown {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 16px;
+            right: 16px;
+            background: linear-gradient(135deg, rgba(26, 31, 46, 0.98) 0%, rgba(52, 152, 219, 0.08) 100%);
+            border: 1px solid rgba(52, 152, 219, 0.4);
+            border-radius: 10px;
+            padding: 12px 0;
+            z-index: 100;
+            flex-direction: column;
+            gap: 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-dropdown.active {
+            display: flex;
+        }
+
+        .nav-dropdown a {
+            padding: 12px 16px;
+            color: #b0b8c1;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.2s ease, color 0.2s ease;
+            border-bottom: 1px solid rgba(52, 152, 219, 0.1);
+        }
+
+        .nav-dropdown a:last-child {
+            border-bottom: none;
+        }
+
+        .nav-dropdown a:hover {
+            background: rgba(52, 152, 219, 0.15);
+            color: #3498db;
+        }
+
         /* Light theme overrides */
         .light-theme {
             --bg-gradient: linear-gradient(135deg, #f7fafc 0%, #ffffff 100%);
@@ -586,6 +663,26 @@
         }
 
         .light-theme .nav-btn:hover i {
+            color: var(--accent);
+        }
+
+        /* Light theme dropdown */
+        .light-theme .nav-toggle span {
+            background: #2b6cb0;
+        }
+
+        .light-theme .nav-dropdown {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(43, 108, 176, 0.03) 100%);
+            border: 1px solid rgba(43, 108, 176, 0.3);
+        }
+
+        .light-theme .nav-dropdown a {
+            color: var(--text-color);
+            border-bottom: 1px solid rgba(43, 108, 176, 0.1);
+        }
+
+        .light-theme .nav-dropdown a:hover {
+            background: rgba(37, 99, 235, 0.1);
             color: var(--accent);
         }
 
@@ -1125,30 +1222,17 @@
                 margin-bottom: 20px;
             }
 
-            /* Navigation - Compact */
+            /* Navigation - Mobile Dropdown */
             nav {
-                top: 10px;
-                left: 50%;
-                transform: translateX(-50%);
-                padding: 8px 12px;
-                gap: 6px;
-                border-radius: 8px;
-                max-width: calc(100vw - 110px);
-                justify-content: center;
-                flex-wrap: wrap;
-                background: linear-gradient(135deg, rgba(26, 31, 46, 0.95) 0%, rgba(52, 152, 219, 0.05) 100%);
-                border: 1px solid rgba(52, 152, 219, 0.4);
-                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+                display: none;
             }
 
-            nav a {
-                font-size: 10px;
-                gap: 3px;
-                padding: 5px 8px;
+            .nav-toggle {
+                display: flex;
             }
 
-            nav a i {
-                font-size: 11px;
+            .nav-dropdown {
+                max-width: calc(100vw - 32px);
             }
 
             /* Control Buttons - Horizontal & Compact */
@@ -1282,18 +1366,52 @@
             <div id="terminalLines" class="terminal-lines" aria-hidden="false"></div>
         </div>
     </div>
-    <nav>
+    <nav id="mainNav">
         <a href="#home" class="nav-link active"><i class="fas fa-home"></i>Home</a>
         <a href="#about" class="nav-link"><i class="fas fa-user"></i>About</a>
         <a href="#skills" class="nav-link"><i class="fas fa-code"></i>Skills</a>
         <a href="resume.pdf" target="_blank"><i class="fas fa-file-pdf"></i>Resume</a>
     </nav>
+
+    <!-- Mobile Hamburger Menu -->
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Mobile Nav Dropdown -->
+    <div class="nav-dropdown" id="navDropdown">
+        <a href="#home" class="nav-link"><i class="fas fa-home"></i> Home</a>
+        <a href="#about" class="nav-link"><i class="fas fa-user"></i> About</a>
+        <a href="#skills" class="nav-link"><i class="fas fa-code"></i> Skills</a>
+        <a href="resume.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Resume</a>
+    </div>
+
     <!-- Control buttons (outside nav, aligned to top-right) -->
     <button class="nav-btn" title="Photography" aria-label="Photography"><i class="fas fa-camera"></i></button>
     <button id="contactBtn" class="nav-btn" title="Contact" aria-label="Contact"><i class="fas fa-envelope"></i></button>
     <button id="themeToggle" class="nav-btn" title="Toggle theme" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
 
     <script>
+        // Mobile Nav Toggle
+        const navToggle = document.getElementById('navToggle');
+        const navDropdown = document.getElementById('navDropdown');
+        const dropdownLinks = navDropdown.querySelectorAll('a');
+
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            navDropdown.classList.toggle('active');
+        });
+
+        // Close dropdown when a link is clicked
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navDropdown.classList.remove('active');
+            });
+        });
+
         // Update active nav link on scroll
         const navLinks = document.querySelectorAll('.nav-link');
         const sections = document.querySelectorAll('section');
