@@ -654,7 +654,6 @@
         <a href="index.html" class="nav-link"><i class="fas fa-home"></i>Home</a>
         <a href="index.html#about" class="nav-link"><i class="fas fa-user"></i>About</a>
         <a href="index.html#skills" class="nav-link"><i class="fas fa-code"></i>Skills</a>
-        <a href="photography.html" class="nav-link active"><i class="fas fa-camera"></i>Photography</a>
         <a href="resume.pdf" target="_blank"><i class="fas fa-file-pdf"></i>Resume</a>
     </nav>
 
@@ -670,7 +669,6 @@
         <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
         <a href="index.html#about" class="nav-link"><i class="fas fa-user"></i> About</a>
         <a href="index.html#skills" class="nav-link"><i class="fas fa-code"></i> Skills</a>
-        <a href="photography.html" class="nav-link"><i class="fas fa-camera"></i> Photography</a>
         <a href="resume.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Resume</a>
     </div>
 
@@ -680,19 +678,19 @@
 
     <script>
         // Mobile Nav Toggle
-        const navToggle = document.getElementById('navToggle');
+        const navToggleBtn = document.getElementById('navToggle');
         const navDropdown = document.getElementById('navDropdown');
         const dropdownLinks = navDropdown.querySelectorAll('a');
 
-        navToggle.addEventListener('click', () => {
-            navToggle.classList.toggle('active');
+        navToggleBtn.addEventListener('click', () => {
+            navToggleBtn.classList.toggle('active');
             navDropdown.classList.toggle('active');
         });
 
         // Close dropdown when a link is clicked
         dropdownLinks.forEach(link => {
             link.addEventListener('click', () => {
-                navToggle.classList.remove('active');
+                navToggleBtn.classList.remove('active');
                 navDropdown.classList.remove('active');
             });
         });
@@ -832,7 +830,6 @@
         document.addEventListener('DOMContentLoaded', initializeIndicators);
         
         // Theme toggle
-        const themeToggle = document.getElementById('themeToggle');
         const html = document.documentElement;
         
         function toggleTheme() {
@@ -848,19 +845,19 @@
         }
         
         // Mobile hamburger menu
-        const navToggle = document.querySelector('.nav-toggle');
-        const navDropdown = document.querySelector('.nav-dropdown');
+        const navToggleBtn2 = document.querySelector('.nav-toggle');
+        const navDropdown2 = document.querySelector('.nav-dropdown');
         
-        navToggle.addEventListener('click', () => {
-            navToggle.classList.toggle('active');
-            navDropdown.classList.toggle('active');
+        navToggleBtn2.addEventListener('click', () => {
+            navToggleBtn2.classList.toggle('active');
+            navDropdown2.classList.toggle('active');
         });
         
         // Close menu when clicking a link
         document.querySelectorAll('.nav-dropdown a').forEach(link => {
             link.addEventListener('click', () => {
-                navToggle.classList.remove('active');
-                navDropdown.classList.remove('active');
+                navToggleBtn2.classList.remove('active');
+                navDropdown2.classList.remove('active');
             });
         });
     </script>
