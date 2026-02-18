@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography - Newton Grady</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;700;900&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+            font-family: 'Inter', sans-serif;
+            color: #e0e0e0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(52, 152, 219, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(46, 213, 115, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Pond background decoration */
+        .pond-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+            background: radial-gradient(ellipse at 30% 40%, rgba(52, 152, 219, 0.15) 0%, transparent 60%),
+                        radial-gradient(ellipse at 70% 60%, rgba(46, 213, 115, 0.08) 0%, transparent 70%);
+        }
+
+        .pond-water {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, 
+                rgba(52, 152, 219, 0.02) 0%,
+                rgba(30, 100, 180, 0.08) 50%,
+                rgba(20, 80, 160, 0.05) 100%);
+            animation: waterFlow 8s ease-in-out infinite;
+        }
+
+        @keyframes waterFlow {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 40px;
+            scroll-margin-top: 80px;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 80px;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 4px 20px rgba(52, 152, 219, 0.3);
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-in;
+            background: linear-gradient(135deg, #fff 0%, #b0b8c1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: 64px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 40px;
+            text-shadow: 0 2px 10px rgba(52, 152, 219, 0.2);
+        }
+
+        section p {
+            font-size: 18px;
+            color: #b0b8c1;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 800px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(26, 31, 46, 0.9);
+            padding: 12px 22px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(52, 152, 219, 0.4), 0 0 40px rgba(52, 152, 219, 0.15), 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(52, 152, 219, 0.6);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            background: linear-gradient(135deg, rgba(26, 31, 46, 0.95) 0%, rgba(52, 152, 219, 0.05) 100%);
+        }
+
+        nav a {
+            color: #b0b8c1;
+            text-decoration: none;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        nav a i {
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            color: #3498db;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #3498db;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .nav-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(26, 31, 46, 0.9);
+            border: 1px solid rgba(52, 152, 219, 0.2);
+            color: #b0b8c1;
+            padding: 10px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            z-index: 99;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease, color 0.2s ease, transform 0.08s ease;
+            font-size: 16px;
+        }
+
+        #contactBtn { right: 80px; }
+        #themeToggle { right: 20px; }
+
+        .nav-btn:hover { background: rgba(52,152,219,0.12); color: #3498db; transform: translateY(-2px); }
+
+        /* Light theme overrides */
+        .light-theme {
+            --bg-gradient: linear-gradient(135deg, #f7fafc 0%, #ffffff 100%);
+            --text-color: #1a1a1a;
+            --muted-text: #444b52;
+            --card-bg: rgba(0,0,0,0.03);
+            --accent: #2b6cb0;
+        }
+
+        .light-theme body {
+            background: var(--bg-gradient);
+            color: var(--text-color);
+        }
+
+        .light-theme nav {
+            background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(43,108,176,0.03) 100%);
+            border: 2px solid rgba(43,108,176,0.3);
+            box-shadow: 0 0 20px rgba(43,108,176,0.25), 0 0 40px rgba(43,108,176,0.08), 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .light-theme nav a, .light-theme .nav-btn {
+            color: var(--text-color);
+        }
+
+        .light-theme .nav-btn {
+            background: rgba(255,255,255,0.9);
+            border: 1px solid rgba(15, 23, 42, 0.06);
+            color: var(--text-color);
+        }
+
+        .light-theme .nav-btn:hover {
+            background: rgba(37,99,235,0.08);
+            color: var(--accent);
+        }
+
+        .light-theme h1 {
+            background: linear-gradient(135deg, #1a1a1a 0%, #444b52 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 4px 12px rgba(37, 99, 235, 0.25)) drop-shadow(0 2px 6px rgba(37, 99, 235, 0.15));
+        }
+
+        .light-theme h2, .light-theme p {
+            color: var(--text-color);
+        }
+
+        .light-theme .pond-background {
+            background: radial-gradient(ellipse at 30% 40%, rgba(37, 99, 235, 0.2) 0%, transparent 60%),
+                        radial-gradient(ellipse at 70% 60%, rgba(34, 197, 94, 0.12) 0%, transparent 70%);
+        }
+
+        .light-theme .pond-water {
+            background: linear-gradient(180deg, 
+                rgba(37, 99, 235, 0.08) 0%,
+                rgba(30, 80, 200, 0.15) 50%,
+                rgba(20, 60, 180, 0.1) 100%);
+        }
+
+        .content-wrapper {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        /* Photography Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(52, 152, 219, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(46, 213, 115, 0.2) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 16px 40px rgba(52, 152, 219, 0.3);
+            background: rgba(52, 152, 219, 0.15);
+            border-color: rgba(52, 152, 219, 0.5);
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+
+        .gallery-item i {
+            font-size: 64px;
+            color: #3498db;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .gallery-item h3 {
+            font-size: 22px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .gallery-item p {
+            font-size: 14px;
+            color: #b0b8c1;
+            margin: 0;
+        }
+
+        .light-theme .gallery-item {
+            background: rgba(0,0,0,0.03);
+            border-color: rgba(43,108,176,0.06);
+        }
+
+        .light-theme .gallery-item:hover {
+            background: rgba(37,99,235,0.08);
+            border-color: rgba(43,108,176,0.2);
+        }
+
+        .light-theme .gallery-item i {
+            color: #2b6cb0;
+        }
+
+        .light-theme .gallery-item h3 {
+            color: #1a1a1a;
+        }
+
+        /* Mobile Hamburger Menu */
+        .nav-toggle {
+            display: none;
+            position: fixed;
+            top: 14px;
+            left: 16px;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 101;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-toggle span {
+            width: 24px;
+            height: 2px;
+            background: #3498db;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .nav-dropdown {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 16px;
+            right: 16px;
+            background: linear-gradient(135deg, rgba(26, 31, 46, 0.98) 0%, rgba(52, 152, 219, 0.08) 100%);
+            border: 1px solid rgba(52, 152, 219, 0.4);
+            border-radius: 10px;
+            padding: 12px 0;
+            z-index: 100;
+            flex-direction: column;
+            gap: 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-dropdown.active {
+            display: flex;
+        }
+
+        .nav-dropdown a {
+            padding: 12px 16px;
+            color: #b0b8c1;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.2s ease, color 0.2s ease;
+            border-bottom: 1px solid rgba(52, 152, 219, 0.1);
+        }
+
+        .nav-dropdown a:last-child {
+            border-bottom: none;
+        }
+
+        .nav-dropdown a:hover {
+            background: rgba(52, 152, 219, 0.15);
+            color: #3498db;
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 80px 20px 40px 20px;
+                min-height: 100vh;
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 60px;
+            }
+
+            h2 {
+                font-size: 40px;
+            }
+
+            section p {
+                font-size: 16px;
+            }
+
+            nav {
+                top: 8px;
+                left: 50%;
+                transform: translateX(-50%);
+                padding: 8px 12px;
+                gap: 10px;
+                flex-wrap: wrap;
+                max-width: calc(100vw - 20px);
+                justify-content: center;
+            }
+
+            nav a {
+                font-size: 11px;
+                gap: 4px;
+            }
+
+            nav a i {
+                font-size: 14px;
+            }
+
+            #contactBtn { right: 12px; top: 10px; }
+            #themeToggle { right: 12px; top: 58px; }
+
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            section {
+                padding: 70px 14px 40px 14px;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 40px;
+                margin-bottom: 15px;
+            }
+
+            h2 {
+                font-size: 28px;
+                margin-bottom: 20px;
+            }
+
+            section p {
+                font-size: 14px;
+                margin-bottom: 20px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-dropdown {
+                max-width: calc(100vw - 32px);
+            }
+
+            #contactBtn {
+                right: 50px;
+                top: 12px;
+                width: 36px;
+                height: 36px;
+                padding: 6px;
+                font-size: 14px;
+            }
+
+            #themeToggle {
+                right: 12px;
+                top: 12px;
+                width: 36px;
+                height: 36px;
+                padding: 6px;
+                font-size: 14px;
+            }
+
+            .nav-btn {
+                border-radius: 6px;
+                transition: background 0.2s ease, color 0.2s ease;
+                display: inline-flex !important;
+            }
+
+            .nav-btn:hover {
+                background: rgba(52, 152, 219, 0.2);
+                color: #3498db;
+                transform: translateY(-2px);
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .gallery-item {
+                padding: 15px;
+            }
+
+            .gallery-item i {
+                font-size: 48px;
+            }
+
+            .gallery-item h3 {
+                font-size: 18px;
+            }
+
+            .content-wrapper {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Pond background -->
+    <div class="pond-background">
+        <div class="pond-water"></div>
+    </div>
+
+    <nav id="mainNav">
+        <a href="index.html" class="nav-link"><i class="fas fa-home"></i>Home</a>
+        <a href="index.html#about" class="nav-link"><i class="fas fa-user"></i>About</a>
+        <a href="index.html#skills" class="nav-link"><i class="fas fa-code"></i>Skills</a>
+        <a href="photography.html" class="nav-link active"><i class="fas fa-camera"></i>Photography</a>
+        <a href="resume.pdf" target="_blank"><i class="fas fa-file-pdf"></i>Resume</a>
+    </nav>
+
+    <!-- Mobile Hamburger Menu -->
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Mobile Nav Dropdown -->
+    <div class="nav-dropdown" id="navDropdown">
+        <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+        <a href="index.html#about" class="nav-link"><i class="fas fa-user"></i> About</a>
+        <a href="index.html#skills" class="nav-link"><i class="fas fa-code"></i> Skills</a>
+        <a href="photography.html" class="nav-link"><i class="fas fa-camera"></i> Photography</a>
+        <a href="resume.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Resume</a>
+    </div>
+
+    <!-- Control buttons -->
+    <button id="contactBtn" class="nav-btn" title="Contact" aria-label="Contact"><i class="fas fa-envelope"></i></button>
+    <button id="themeToggle" class="nav-btn" title="Toggle theme" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+
+    <script>
+        // Mobile Nav Toggle
+        const navToggle = document.getElementById('navToggle');
+        const navDropdown = document.getElementById('navDropdown');
+        const dropdownLinks = navDropdown.querySelectorAll('a');
+
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            navDropdown.classList.toggle('active');
+        });
+
+        // Close dropdown when a link is clicked
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navDropdown.classList.remove('active');
+            });
+        });
+
+        // Theme toggle: persist preference in localStorage
+        const themeToggle = document.getElementById('themeToggle');
+        function applyTheme(isLight) {
+            if (isLight) document.documentElement.classList.add('light-theme');
+            else document.documentElement.classList.remove('light-theme');
+            const icon = themeToggle.querySelector('i');
+            if (icon) icon.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        const prefersLight = savedTheme === 'light';
+        applyTheme(prefersLight);
+
+        themeToggle.addEventListener('click', () => {
+            const isLightNow = document.documentElement.classList.toggle('light-theme');
+            localStorage.setItem('theme', isLightNow ? 'light' : 'dark');
+            applyTheme(isLightNow);
+        });
+
+        // Contact button
+        document.getElementById('contactBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = 'mailto:newtgr@gmail.com?subject=Contact%20Request&body=Hi%20Newton,%0A%0AI%20would%20like%20to%20get%20in%20touch.';
+        });
+    </script>
+
+    <!-- Photography Section -->
+    <section id="photography">
+        <div class="content-wrapper">
+            <h1>Photography</h1>
+            <p>Capturing moments through both landscapes and urban scenes. A blend of technical precision and creative expression.</p>
+            
+            <div class="gallery">
+                <div class="gallery-item">
+                    <i class="fas fa-mountain"></i>
+                    <h3>Landscapes</h3>
+                    <p>Scenic mountain vistas and natural landscapes</p>
+                </div>
+                
+                <div class="gallery-item">
+                    <i class="fas fa-city"></i>
+                    <h3>Urban</h3>
+                    <p>City architecture and street photography</p>
+                </div>
+                
+                <div class="gallery-item">
+                    <i class="fas fa-sunset"></i>
+                    <h3>Golden Hour</h3>
+                    <p>Dramatic lighting during sunrise and sunset</p>
+                </div>
+                
+                <div class="gallery-item">
+                    <i class="fas fa-water"></i>
+                    <h3>Water & Reflections</h3>
+                    <p>Lakes, rivers, and mirror-like reflections</p>
+                </div>
+                
+                <div class="gallery-item">
+                    <i class="fas fa-tree"></i>
+                    <h3>Nature</h3>
+                    <p>Flora and wildlife photography</p>
+                </div>
+                
+                <div class="gallery-item">
+                    <i class="fas fa-camera-retro"></i>
+                    <h3>Portraits</h3>
+                    <p>Candid and posed portrait photography</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
