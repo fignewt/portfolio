@@ -267,83 +267,159 @@
             width: 100%;
         }
 
-        /* Photography Gallery */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+        /* Photography Gallery - Carousel Style */
+        .gallery-carousel {
             width: 100%;
-            margin-top: 20px;
-        }
-
-        .gallery-item {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid rgba(52, 152, 219, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+            max-width: 900px;
+            margin-top: 30px;
             position: relative;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
             overflow: hidden;
-            cursor: pointer;
-        }
-
-        .gallery-item::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(46, 213, 115, 0.2) 0%, transparent 50%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-8px) scale(1.02);
+            border-radius: 12px;
             box-shadow: 0 16px 40px rgba(52, 152, 219, 0.3);
-            background: rgba(52, 152, 219, 0.15);
-            border-color: rgba(52, 152, 219, 0.5);
+            background: rgba(20, 20, 30, 0.8);
+            aspect-ratio: 16 / 10;
+            border: 1px solid rgba(52, 152, 219, 0.2);
         }
 
-        .gallery-item:hover::before {
+        .carousel-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-item {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.1) 0%, rgba(46, 213, 115, 0.05) 100%);
+        }
+
+        .carousel-item.active {
             opacity: 1;
         }
 
-        .gallery-item i {
-            font-size: 64px;
+        .carousel-item i {
+            font-size: 120px;
             color: #3498db;
-            margin-bottom: 15px;
-            display: block;
+            opacity: 0.6;
         }
 
-        .gallery-item h3 {
-            font-size: 22px;
-            color: #fff;
-            margin-bottom: 10px;
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(26, 31, 46, 0.8);
+            border: 1px solid rgba(52, 152, 219, 0.3);
+            color: #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            font-size: 24px;
         }
 
-        .gallery-item p {
+        .carousel-nav:hover {
+            background: rgba(52, 152, 219, 0.2);
+            border-color: rgba(52, 152, 219, 0.6);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-prev {
+            left: 20px;
+        }
+
+        .carousel-next {
+            right: 20px;
+        }
+
+        .carousel-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(26, 31, 46, 0.9);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(52, 152, 219, 0.3);
+            color: #3498db;
             font-size: 14px;
-            color: #b0b8c1;
-            margin: 0;
+            z-index: 10;
         }
 
-        .light-theme .gallery-item {
-            background: rgba(0,0,0,0.03);
-            border-color: rgba(43,108,176,0.06);
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+            flex-wrap: wrap;
         }
 
-        .light-theme .gallery-item:hover {
-            background: rgba(37,99,235,0.08);
-            border-color: rgba(43,108,176,0.2);
+        .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(52, 152, 219, 0.3);
+            border: 1px solid rgba(52, 152, 219, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .light-theme .gallery-item i {
+        .indicator.active {
+            background: #3498db;
+            transform: scale(1.3);
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.6);
+        }
+
+        .indicator:hover {
+            background: rgba(52, 152, 219, 0.6);
+        }
+
+        .light-theme .carousel-container {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(43, 108, 176, 0.2);
+            box-shadow: 0 16px 40px rgba(37, 99, 235, 0.15);
+        }
+
+        .light-theme .carousel-nav {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(43, 108, 176, 0.3);
             color: #2b6cb0;
         }
 
-        .light-theme .gallery-item h3 {
-            color: #1a1a1a;
+        .light-theme .carousel-nav:hover {
+            background: rgba(37, 99, 235, 0.1);
+            border-color: rgba(43, 108, 176, 0.5);
+        }
+
+        .light-theme .carousel-counter {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(43, 108, 176, 0.3);
+            color: #2b6cb0;
+        }
+
+        .light-theme .indicator {
+            background: rgba(37, 99, 235, 0.2);
+            border: 1px solid rgba(43, 108, 176, 0.4);
+        }
+
+        .light-theme .indicator.active {
+            background: #2b6cb0;
+            box-shadow: 0 0 10px rgba(37, 99, 235, 0.4);
         }
 
         /* Mobile Hamburger Menu */
@@ -646,44 +722,136 @@
             <h1>Photography</h1>
             <p>Capturing moments through both landscapes and urban scenes. A blend of technical precision and creative expression.</p>
             
-            <div class="gallery">
-                <div class="gallery-item">
-                    <i class="fas fa-mountain"></i>
-                    <h3>Landscapes</h3>
-                    <p>Scenic mountain vistas and natural landscapes</p>
+            <div class="gallery-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-inner" id="carouselInner">
+                        <div class="carousel-item active">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div class="carousel-item">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div class="carousel-item">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div class="carousel-item">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div class="carousel-item">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div class="carousel-item">
+                            <i class="fas fa-image"></i>
+                        </div>
+                    </div>
+                    <button class="carousel-nav carousel-prev" onclick="moveCarousel(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-nav carousel-next" onclick="moveCarousel(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="carousel-counter">
+                        <span id="current-photo">1</span> / <span id="total-photos">6</span>
+                    </div>
                 </div>
-                
-                <div class="gallery-item">
-                    <i class="fas fa-city"></i>
-                    <h3>Urban</h3>
-                    <p>City architecture and street photography</p>
-                </div>
-                
-                <div class="gallery-item">
-                    <i class="fas fa-sunset"></i>
-                    <h3>Golden Hour</h3>
-                    <p>Dramatic lighting during sunrise and sunset</p>
-                </div>
-                
-                <div class="gallery-item">
-                    <i class="fas fa-water"></i>
-                    <h3>Water & Reflections</h3>
-                    <p>Lakes, rivers, and mirror-like reflections</p>
-                </div>
-                
-                <div class="gallery-item">
-                    <i class="fas fa-tree"></i>
-                    <h3>Nature</h3>
-                    <p>Flora and wildlife photography</p>
-                </div>
-                
-                <div class="gallery-item">
-                    <i class="fas fa-camera-retro"></i>
-                    <h3>Portraits</h3>
-                    <p>Candid and posed portrait photography</p>
-                </div>
+                <div class="carousel-indicators" id="indicators"></div>
             </div>
         </div>
     </section>
-</body>
-</html>
+<script>
+        // Carousel functionality
+        let currentPhotoIndex = 0;
+        const totalPhotos = document.querySelectorAll('.carousel-item').length;
+        
+        // Initialize indicators
+        function initializeIndicators() {
+            const indicatorsContainer = document.getElementById('indicators');
+            for (let i = 0; i < totalPhotos; i++) {
+                const indicator = document.createElement('div');
+                indicator.className = `indicator ${i === 0 ? 'active' : ''}`;
+                indicator.onclick = () => goToPhoto(i);
+                indicatorsContainer.appendChild(indicator);
+            }
+            document.getElementById('total-photos').textContent = totalPhotos;
+        }
+        
+        function updateCarousel() {
+            const items = document.querySelectorAll('.carousel-item');
+            const indicators = document.querySelectorAll('.indicator');
+            
+            items.forEach((item, index) => {
+                item.classList.remove('active');
+                if (index === currentPhotoIndex) {
+                    item.classList.add('active');
+                }
+            });
+            
+            indicators.forEach((indicator, index) => {
+                indicator.classList.remove('active');
+                if (index === currentPhotoIndex) {
+                    indicator.classList.add('active');
+                }
+            });
+            
+            document.getElementById('current-photo').textContent = currentPhotoIndex + 1;
+        }
+        
+        function moveCarousel(direction) {
+            currentPhotoIndex += direction;
+            
+            if (currentPhotoIndex >= totalPhotos) {
+                currentPhotoIndex = 0;
+            } else if (currentPhotoIndex < 0) {
+                currentPhotoIndex = totalPhotos - 1;
+            }
+            
+            updateCarousel();
+        }
+        
+        function goToPhoto(index) {
+            currentPhotoIndex = index;
+            updateCarousel();
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') moveCarousel(-1);
+            if (e.key === 'ArrowRight') moveCarousel(1);
+        });
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', initializeIndicators);
+        
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        function toggleTheme() {
+            html.classList.toggle('light-theme');
+            localStorage.setItem('theme', html.classList.contains('light-theme') ? 'light' : 'dark');
+        }
+        
+        themeToggle.addEventListener('click', toggleTheme);
+        
+        // Check saved theme preference
+        if (localStorage.getItem('theme') === 'light') {
+            html.classList.add('light-theme');
+        }
+        
+        // Mobile hamburger menu
+        const navToggle = document.querySelector('.nav-toggle');
+        const navDropdown = document.querySelector('.nav-dropdown');
+        
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            navDropdown.classList.toggle('active');
+        });
+        
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-dropdown a').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navDropdown.classList.remove('active');
+            });
+        });
+    </script>
