@@ -540,8 +540,9 @@
         }
 
         /* Position buttons with proper stacking */
-        #contactBtn { right: 20px; }
-        #themeToggle { right: 68px; }
+        #photoBtn { right: 116px; }
+        #contactBtn { right: 68px; }
+        #themeToggle { right: 20px; }
         .nav-btn:nth-of-type(1) { right: 116px; }
 
         .nav-btn:hover { background: rgba(52,152,219,0.12); color: #3498db; transform: translateY(-2px); }
@@ -1129,9 +1130,9 @@
                 font-size: 14px;
             }
 
-            #contactBtn { right: 12px; top: 10px; }
-            #themeToggle { right: 12px; top: 58px; }
-            .nav-btn:nth-of-type(1) { right: 58px; top: 10px; }
+            #photoBtn { right: 12px; top: 10px; }
+            #contactBtn { right: 12px; top: 58px; }
+            #themeToggle { right: 12px; top: 106px; }
 
             /* Skills Grid Mobile */
             .skills-grid {
@@ -1254,8 +1255,8 @@
                 font-size: 14px;
             }
 
-            .nav-btn:nth-of-type(1) {
-                right: 50px;
+            #photoBtn {
+                right: 88px;
                 top: 12px;
                 width: 36px;
                 height: 36px;
@@ -1398,7 +1399,7 @@
     </div>
 
     <!-- Control buttons (outside nav, aligned to top-right) -->
-    <button class="nav-btn" title="Photography" aria-label="Photography"><i class="fas fa-camera"></i></button>
+    <button id="photoBtn" class="nav-btn" title="Photography" aria-label="Photography"><i class="fas fa-camera"></i></button>
     <button id="contactBtn" class="nav-btn" title="Contact" aria-label="Contact"><i class="fas fa-envelope"></i></button>
     <button id="themeToggle" class="nav-btn" title="Toggle theme" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
 
