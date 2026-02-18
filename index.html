@@ -987,7 +987,8 @@
         /* Mobile Responsive Design */
         @media (max-width: 768px) {
             section {
-                padding: 40px 20px;
+                padding: 80px 20px 40px 20px;
+                min-height: 100vh;
             }
 
             h1 {
@@ -1010,38 +1011,29 @@
                 font-size: 16px;
             }
 
-            /* Weather Widget Mobile */
-            .weather-widget {
-                left: 10px;
-                padding: 12px 15px;
-                min-width: 150px;
-            }
-
-            .weather-temp {
-                font-size: 16px;
-            }
-
-            .weather-location {
-                font-size: 11px;
-            }
-
-            /* Navigation Mobile */
+            /* Navigation Tablet */
             nav {
-                right: 100px;
-                padding: 12px 15px;
-                gap: 15px;
+                top: 8px;
+                left: 50%;
+                transform: translateX(-50%);
+                padding: 8px 12px;
+                gap: 10px;
                 flex-wrap: wrap;
                 max-width: calc(100vw - 20px);
-                justify-content: flex-end;
+                justify-content: center;
             }
 
             nav a {
-                font-size: 12px;
+                font-size: 11px;
+                gap: 4px;
             }
 
             nav a i {
-                font-size: 16px;
+                font-size: 14px;
             }
+
+            #contactBtn { right: 12px; top: 10px; }
+            #themeToggle { right: 12px; top: 58px; }
 
             /* Skills Grid Mobile */
             .skills-grid {
@@ -1101,97 +1093,110 @@
 
         @media (max-width: 480px) {
             section {
-                padding: 20px 12px;
-                min-height: auto;
-                padding-top: 90px;
+                padding: 80px 16px 40px 16px;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
             }
 
             h1 {
-                font-size: 48px;
+                font-size: 40px;
                 margin-bottom: 15px;
-                letter-spacing: 1px;
             }
 
             h2 {
-                font-size: 36px;
+                font-size: 28px;
                 margin-bottom: 20px;
             }
 
             h3 {
-                font-size: 22px;
-                margin-bottom: 15px;
+                font-size: 18px;
+                margin-bottom: 12px;
             }
 
             .hero p {
-                font-size: 16px;
+                font-size: 15px;
             }
 
             section p {
-                font-size: 15px;
-                line-height: 1.5;
+                font-size: 14px;
+                margin-bottom: 20px;
             }
 
-            /* Navigation Extra Small */
+            /* Navigation - Horizontal Stack */
             nav {
-                top: 12px;
+                top: 8px;
                 left: 50%;
                 transform: translateX(-50%);
-                padding: 10px 12px;
-                gap: 10px;
-                border-radius: 10px;
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                max-width: calc(100vw - 24px);
+                padding: 6px 8px;
+                gap: 4px;
+                border-radius: 6px;
+                max-width: calc(100vw - 100px);
+                justify-content: center;
+                flex-wrap: wrap;
+                background: linear-gradient(135deg, rgba(26, 31, 46, 0.95) 0%, rgba(52, 152, 219, 0.05) 100%);
+                border: 1px solid rgba(52, 152, 219, 0.4);
             }
 
             nav a {
-                font-size: 12px;
-                gap: 4px;
-                white-space: nowrap;
+                font-size: 10px;
+                gap: 3px;
+                padding: 4px 6px;
             }
 
             nav a i {
-                font-size: 14px;
+                font-size: 12px;
             }
 
-            /* Control buttons - stack vertically on right */
+            /* Control Buttons - Stacked Vertically */
             #contactBtn {
-                top: auto;
-                bottom: 30px;
-                right: 20px;
+                right: 12px;
+                top: 8px;
+                width: 40px;
+                height: 40px;
+                padding: 8px;
             }
 
             #themeToggle {
-                top: auto;
-                bottom: 90px;
-                right: 20px;
+                right: 12px;
+                top: 56px;
+                width: 40px;
+                height: 40px;
+                padding: 8px;
             }
 
             .nav-btn {
-                width: 44px;
-                height: 44px;
-                padding: 8px;
-                font-size: 16px;
+                font-size: 14px;
+                border-radius: 8px;
+                transition: background 0.2s ease, color 0.2s ease;
+            }
+
+            .nav-btn:hover {
+                background: rgba(52, 152, 219, 0.2);
+                color: #3498db;
+                transform: translateY(-2px);
             }
 
             /* Skills Grid Extra Small */
             .skills-grid {
-                grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-                gap: 12px;
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 10px;
             }
 
             .skill-card {
-                padding: 14px 10px;
+                padding: 12px 8px;
                 border-radius: 8px;
             }
 
             .skill-card i {
-                font-size: 26px;
-                margin-bottom: 8px;
+                font-size: 24px;
+                margin-bottom: 6px;
             }
 
             .skill-card h4 {
-                font-size: 13px;
+                font-size: 12px;
             }
 
             /* Gallery Extra Small */
@@ -1201,26 +1206,22 @@
             }
 
             .gallery-item {
-                padding: 25px 15px;
-                border-radius: 8px;
+                padding: 25px 12px;
             }
 
             .gallery-item i {
-                font-size: 44px;
-                margin-bottom: 12px;
+                font-size: 40px;
             }
 
             .gallery-item h4 {
-                font-size: 16px;
+                font-size: 15px;
             }
 
             /* Contact Extra Small */
             .contact-item {
-                padding: 14px;
-                margin: 10px 0;
+                padding: 12px;
+                margin: 12px 0;
                 gap: 12px;
-                flex-direction: column;
-                text-align: center;
             }
 
             .contact-item i {
@@ -1233,18 +1234,10 @@
 
             .content-wrapper {
                 max-width: 100%;
-                width: 100%;
             }
 
             .about-content {
                 max-width: 100%;
-                width: 100%;
-            }
-
-            /* Lily Pad - reduce opacity on small mobile */
-            .lily-pad.about,
-            .lily-pad.skills {
-                opacity: 0.3;
             }
         }
     </style>
