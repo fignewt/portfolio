@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newton Grady - Computer Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;700;900&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+            font-family: 'Inter', sans-serif;
+            color: #e0e0e0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(52, 152, 219, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(46, 213, 115, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Pond background decoration */
+        .pond-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+            background: radial-gradient(ellipse at 30% 40%, rgba(52, 152, 219, 0.15) 0%, transparent 60%),
+                        radial-gradient(ellipse at 70% 60%, rgba(46, 213, 115, 0.08) 0%, transparent 70%);
+        }
+
+        .pond-water {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, 
+                rgba(52, 152, 219, 0.02) 0%,
+                rgba(30, 100, 180, 0.08) 50%,
+                rgba(20, 80, 160, 0.05) 100%);
+            animation: waterFlow 8s ease-in-out infinite;
+        }
+
+        @keyframes waterFlow {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Lily Pads */
+        .lily-pad {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 5;
+            background: radial-gradient(circle at 30% 30%, rgba(76, 175, 80, 0.5) 0%, rgba(56, 142, 60, 0.3) 70%, rgba(40, 100, 40, 0.15) 100%);
+            border: 2px solid rgba(76, 175, 80, 0.4);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), inset -2px -2px 8px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(2px);
+        }
+
+        .lily-pad.home {
+            width: 600px;
+            height: 600px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .lily-pad.about {
+            width: 700px;
+            height: 700px;
+            top: 150%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .lily-pad.skills {
+            width: 750px;
+            height: 750px;
+            top: 250%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Light theme lily pads */
+        .light-theme .lily-pad {
+            background: radial-gradient(circle at 30% 30%, rgba(129, 199, 132, 0.6) 0%, rgba(102, 187, 106, 0.4) 70%, rgba(76, 175, 80, 0.2) 100%);
+            border: 2px solid rgba(76, 175, 80, 0.5);
+        }
+
+        .koi {
+            position: absolute;
+            width: 60px;
+            height: 30px;
+            bottom: 20%;
+            animation: swim 15s ease-in-out infinite;
+        }
+
+        .koi-body {
+            width: 100%;
+            height: 100%;
+            border-radius: 50% 45% 45% 50%;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .koi-body::before {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid rgba(52, 152, 219, 0.3);
+            border-radius: 50%;
+            animation: ripple 2s ease-out infinite;
+        }
+
+        @keyframes ripple {
+            0% {
+                width: 80px;
+                height: 80px;
+                opacity: 0.6;
+            }
+            100% {
+                width: 200px;
+                height: 200px;
+                opacity: 0;
+            }
+        }
+
+        .koi-body::after {
+            content: '';
+            position: absolute;
+            right: -15px;
+            width: 20px;
+            height: 30px;
+            background: inherit;
+            clip-path: polygon(0 20%, 100% 0%, 100% 100%, 0 80%);
+            animation: tailWag 0.6s ease-in-out infinite;
+        }
+
+        .koi-eye {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #000;
+            border-radius: 50%;
+            left: 8px;
+            top: 8px;
+        }
+
+        @keyframes tailWag {
+            0%, 100% {
+                transform: rotateZ(0deg);
+            }
+            50% {
+                transform: rotateZ(15deg);
+            }
+        }
+
+        .koi-1 {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #fff44f 100%);
+            left: 10%;
+            bottom: 30%;
+            animation: swim1 20s ease-in-out infinite;
+            animation-delay: 0s;
+        }
+
+        .koi-1 .koi-body::before {
+            animation-delay: 0s;
+        }
+
+        .koi-2 {
+            background: linear-gradient(135deg, #ff1744 0%, #ff5252 50%, #ffa726 100%);
+            left: 50%;
+            bottom: 25%;
+            animation: swim2 22s ease-in-out infinite;
+            animation-delay: 5s;
+            transform: scaleX(-1);
+        }
+
+        .koi-2 .koi-body::before {
+            animation-delay: 5s;
+        }
+
+        .koi-3 {
+            background: linear-gradient(135deg, #fdd835 0%, #ff9800 50%, #ff6f00 100%);
+            left: 30%;
+            bottom: 40%;
+            animation: swim3 24s ease-in-out infinite;
+            animation-delay: 10s;
+        }
+
+        .koi-3 .koi-body::before {
+            animation-delay: 10s;
+        }
+
+        .koi-4 {
+            background: linear-gradient(135deg, #fff59d 0%, #ffeb3b 50%, #ff9800 100%);
+            left: 70%;
+            bottom: 35%;
+            animation: swim4 19s ease-in-out infinite;
+            animation-delay: 7s;
+            transform: scaleX(-1);
+        }
+
+        .koi-4 .koi-body::before {
+            animation-delay: 7s;
+        }
+
+        @keyframes swim {
+            0% {
+                left: -10%;
+                bottom: 30%;
+            }
+            25% {
+                bottom: 25%;
+            }
+            50% {
+                left: 100%;
+                bottom: 35%;
+            }
+            75% {
+                bottom: 40%;
+            }
+            100% {
+                left: -10%;
+                bottom: 30%;
+            }
+        }
+
+        /* Unique swim paths for each koi */
+        @keyframes swim1 {
+            0% {
+                left: -10%;
+                bottom: 15%;
+            }
+            25% {
+                left: 25%;
+                bottom: 10%;
+            }
+            50% {
+                left: 60%;
+                bottom: 20%;
+            }
+            75% {
+                left: 85%;
+                bottom: 12%;
+            }
+            100% {
+                left: 110%;
+                bottom: 15%;
+            }
+        }
+
+        @keyframes swim2 {
+            0% {
+                left: 110%;
+                bottom: 50%;
+            }
+            25% {
+                left: 75%;
+                bottom: 55%;
+            }
+            50% {
+                left: 40%;
+                bottom: 48%;
+            }
+            75% {
+                left: 15%;
+                bottom: 52%;
+            }
+            100% {
+                left: -10%;
+                bottom: 50%;
+            }
+        }
+
+        @keyframes swim3 {
+            0% {
+                left: -10%;
+                bottom: 35%;
+            }
+            20% {
+                left: 20%;
+                bottom: 40%;
+            }
+            40% {
+                left: 45%;
+                bottom: 38%;
+            }
+            60% {
+                left: 70%;
+                bottom: 42%;
+            }
+            80% {
+                left: 90%;
+                bottom: 36%;
+            }
+            100% {
+                left: 110%;
+                bottom: 35%;
+            }
+        }
+
+        @keyframes swim4 {
+            0% {
+                left: 110%;
+                bottom: 25%;
+            }
+            25% {
+                left: 80%;
+                bottom: 20%;
+            }
+            50% {
+                left: 50%;
+                bottom: 28%;
+            }
+            75% {
+                left: 20%;
+                bottom: 18%;
+            }
+            100% {
+                left: -10%;
+                bottom: 25%;
+            }
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 40px;
+            scroll-margin-top: 80px;
+            position: relative;
+            z-index: 10;
+                    --bg-gradient: linear-gradient(135deg, #f7fafc 0%, #ffffff 100%); 
+                    --text-color: #111827; /* dark slate */
+                    --muted-text: #6b7280;
+                    --card-bg: #ffffff;
+                    --card-border: rgba(15, 23, 42, 0.06);
+                    --accent: #2563eb; /* bluish */
+                    --accent-weak: rgba(37,99,235,0.12);
+        }
+
+        section:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        section:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        section:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        section:nth-child(4) {
+            animation-delay: 0.2s;
+        }
+
+        section:nth-child(5) {
+            animation-delay: 0.2s;
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 120px;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 
+                0 4px 20px rgba(52, 152, 219, 0.3);
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in;
+            background: linear-gradient(135deg, #fff 0%, #b0b8c1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: 64px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 40px;
+            text-shadow: 
+                0 2px 10px rgba(52, 152, 219, 0.2);
+        }
+
+        h3 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #3498db;
+            margin-bottom: 20px;
+            text-align: left;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            text-align: center;
+        }
+
+        .hero p {
+            font-size: 24px;
+            color: #b0b8c1;
+            font-family: 'Inter', sans-serif;
+        }
+
+        section p {
+            font-size: 18px;
+            color: #b0b8c1;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 800px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(26, 31, 46, 0.9);
+            padding: 12px 22px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(52, 152, 219, 0.4), 0 0 40px rgba(52, 152, 219, 0.15), 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(52, 152, 219, 0.6);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            background: linear-gradient(135deg, rgba(26, 31, 46, 0.95) 0%, rgba(52, 152, 219, 0.05) 100%);
+        }
+
+        nav a {
+            color: #b0b8c1;
+            text-decoration: none;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        /* Icon-only nav item (photography) */
+        .nav-icon {
+            padding: 6px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b0b8c1;
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: 8px;
+        }
+
+        .nav-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(26, 31, 46, 0.9);
+            border: 1px solid rgba(52, 152, 219, 0.2);
+            color: #b0b8c1;
+            padding: 10px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            z-index: 99;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease, color 0.2s ease, transform 0.08s ease;
+            font-size: 16px;
+        }
+
+        /* Position buttons with proper stacking */
+        #contactBtn { right: 20px; }
+        #themeToggle { right: 68px; }
+        .nav-btn:nth-of-type(1) { right: 116px; }
+
+        .nav-btn:hover { background: rgba(52,152,219,0.12); color: #3498db; transform: translateY(-2px); }
+
+        /* Light theme overrides */
+        .light-theme {
+            --bg-gradient: linear-gradient(135deg, #f7fafc 0%, #ffffff 100%);
+            --text-color: #1a1a1a;
+            --muted-text: #444b52;
+            --card-bg: rgba(0,0,0,0.03);
+            --accent: #2b6cb0;
+        }
+
+        .light-theme body {
+            background: var(--bg-gradient);
+            color: var(--text-color);
+        }
+
+        .light-theme nav {
+            background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(43,108,176,0.03) 100%);
+            border: 2px solid rgba(43,108,176,0.3);
+            box-shadow: 0 0 20px rgba(43,108,176,0.25), 0 0 40px rgba(43,108,176,0.08), 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .light-theme nav a, .light-theme .nav-icon, .light-theme .nav-btn {
+            color: var(--text-color);
+        }
+
+        .light-theme .nav-btn {
+            background: rgba(255,255,255,0.9);
+            border: 1px solid var(--card-border);
+            color: var(--text-color);
+        }
+
+        .light-theme .nav-btn:hover {
+            background: rgba(37,99,235,0.08);
+            color: var(--accent);
+        }
+
+        .light-theme .nav-btn i {
+            color: var(--text-color);
+        }
+
+        .light-theme .nav-btn:hover i {
+            color: var(--accent);
+        }
+
+        .light-theme h1 {
+            background: linear-gradient(135deg, #1a1a1a 0%, #444b52 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 4px 12px rgba(37, 99, 235, 0.25)) drop-shadow(0 2px 6px rgba(37, 99, 235, 0.15));
+        }
+
+        .light-theme h2, .light-theme h3, .light-theme h4, .light-theme p {
+            color: var(--text-color);
+        }
+
+        .light-theme .skill-card h4, .light-theme .gallery-item h4 {
+            color: var(--text-color);
+        }
+
+        .light-theme .skill-card, .light-theme .gallery-item, .light-theme .contact-item {
+            background: var(--card-bg);
+            border-color: rgba(43,108,176,0.06);
+            box-shadow: 0 8px 24px rgba(10,10,10,0.03);
+        }
+
+        .light-theme .gallery-item i, .light-theme .skill-card i, .light-theme .contact-item i {
+            color: var(--accent);
+        }
+
+        .light-theme .site-footer { background: transparent; }
+
+        /* Light theme - pond visibility */
+        .light-theme .pond-background {
+            background: radial-gradient(ellipse at 30% 40%, rgba(37, 99, 235, 0.2) 0%, transparent 60%),
+                        radial-gradient(ellipse at 70% 60%, rgba(34, 197, 94, 0.12) 0%, transparent 70%);
+        }
+
+        .light-theme .pond-water {
+            background: linear-gradient(180deg, 
+                rgba(37, 99, 235, 0.08) 0%,
+                rgba(30, 80, 200, 0.15) 50%,
+                rgba(20, 60, 180, 0.1) 100%);
+        }
+
+        nav a.active {
+            color: #3498db;
+        }
+
+        nav a.active::after {
+            width: 100%;
+        }
+
+        nav a i {
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            color: #3498db;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #3498db;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Weather widget removed */
+
+        .content-wrapper {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        /* Skills Section */
+        .skill-section {
+            margin-bottom: 50px;
+            width: 100%;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(52, 152, 219, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(52, 152, 219, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 16px 40px rgba(52, 152, 219, 0.3);
+            background: rgba(52, 152, 219, 0.15);
+            border-color: rgba(52, 152, 219, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-card i {
+            font-size: 32px;
+            color: #3498db;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .skill-card h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            text-align: center;
+        }
+
+        .skill-card-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-align: center;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            width: 100%;
+        }
+
+        .gallery-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(52, 152, 219, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(46, 213, 115, 0.2) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 16px 40px rgba(52, 152, 219, 0.3);
+            background: rgba(52, 152, 219, 0.15);
+            border-color: rgba(52, 152, 219, 0.5);
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+
+        .gallery-item i {
+            font-size: 64px;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+
+        .gallery-item h4 {
+            font-size: 24px;
+            border: none;
+            padding: 0;
+        }
+
+        /* Contact Section */
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(52, 152, 219, 0.1);
+            transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(52, 152, 219, 0.2) 0%, transparent 100%);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+            background: rgba(52, 152, 219, 0.15);
+            border-color: rgba(52, 152, 219, 0.5);
+        }
+
+        .contact-item:hover::before {
+            transform: translateX(0);
+        }
+
+        .contact-item i {
+            font-size: 40px;
+            color: #3498db;
+        }
+
+        .contact-item a {
+            color: #b0b8c1;
+            text-decoration: none;
+            font-size: 18px;
+            font-family: 'Inter', sans-serif;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #3498db;
+        }
+
+        /* About Section */
+        .about-content {
+            text-align: left;
+            max-width: 800px;
+        }
+
+        .about-content p {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        /* Audio Control */
+        .audio-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(26, 31, 46, 0.9);
+            border: 1px solid rgba(52, 152, 219, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 99;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .audio-toggle:hover {
+            background: rgba(52, 152, 219, 0.2);
+            border-color: rgba(52, 152, 219, 0.5);
+            transform: scale(1.1);
+        }
+
+        .audio-toggle i {
+            font-size: 20px;
+            color: #3498db;
+            transition: color 0.3s ease;
+        }
+
+        .audio-toggle.playing i {
+            color: #2ecc71;
+        }
+
+        .audio-toggle.playing::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #2ecc71;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.3);
+                opacity: 0;
+            }
+        }
+
+        /* Game Start Screen - Terminal Boot */
+        .game-start-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .game-start-screen.hidden {
+            animation: fadeOut 0.6s ease-out forwards;
+            pointer-events: none;
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; visibility: hidden; }
+        }
+
+        .game-screen-content {
+            width: 92%;
+            max-width: 760px;
+            background: #000;
+            border: 6px solid rgba(34, 139, 34, 0.08);
+            padding: 30px;
+            box-shadow: 0 0 40px rgba(0, 255, 128, 0.05), inset 0 0 30px rgba(0,0,0,0.6);
+        }
+
+        .terminal-lines {
+            font-family: 'VT323', monospace;
+            color: #33ff33;
+            font-size: 20px;
+            line-height: 1.4;
+            text-align: left;
+            white-space: pre-wrap;
+            min-height: 240px;
+            max-height: 60vh;
+            overflow: hidden;
+        }
+
+        .terminal-line {
+            margin-bottom: 6px;
+            opacity: 0.98;
+        }
+
+        .terminal-prompt {
+            margin-top: 8px;
+        }
+
+        .terminal-prompt .prompt-text {
+            color: #33ff33;
+            margin-right: 6px;
+        }
+
+        .terminal-prompt .cursor {
+            display: inline-block;
+            width: 12px;
+            background: #33ff33;
+            margin-left: 6px;
+            animation: cursorBlink 0.9s steps(1) infinite;
+            vertical-align: text-bottom;
+        }
+
+        @keyframes cursorBlink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        @media (max-width: 768px) {
+            .terminal-lines { font-size: 18px; }
+            .game-screen-content { padding: 22px; border-width: 4px; }
+        }
+
+        @media (max-width: 480px) {
+            .terminal-lines { font-size: 16px; }
+            nav {
+                left: 50%;
+                transform: translateX(-50%);
+                padding: 10px 14px;
+                gap: 12px;
+                flex-wrap: wrap;
+                max-width: calc(100vw - 40px);
+                justify-content: center;
+            }
+        .boot-fade {
+            animation: bootFade 0.8s ease-out forwards;
+        }
+
+        /* Footer styling */
+        .site-footer {
+            padding: 24px 0;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .site-footer .footer-icon {
+            display: inline-block;
+            margin: 0 12px;
+            color: #b0b8c1;
+            font-size: 22px;
+            text-decoration: none;
+            transition: color 0.2s ease, transform 0.15s ease;
+        }
+
+        .site-footer .footer-icon:hover {
+            color: #3498db;
+            transform: translateY(-3px);
+        }
+
+
+
+        /* Mobile Responsive Design */
+        @media (max-width: 768px) {
+            section {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 60px;
+            }
+
+            h2 {
+                font-size: 40px;
+            }
+
+            h3 {
+                font-size: 24px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            section p {
+                font-size: 16px;
+            }
+
+            /* Weather Widget Mobile */
+            .weather-widget {
+                left: 10px;
+                padding: 12px 15px;
+                min-width: 150px;
+            }
+
+            .weather-temp {
+                font-size: 16px;
+            }
+
+            .weather-location {
+                font-size: 11px;
+            }
+
+            /* Navigation Mobile */
+            nav {
+                right: 100px;
+                padding: 12px 15px;
+                gap: 15px;
+                flex-wrap: wrap;
+                max-width: calc(100vw - 20px);
+                justify-content: flex-end;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            nav a i {
+                font-size: 16px;
+            }
+
+            /* Skills Grid Mobile */
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 12px;
+            }
+
+            .skill-card {
+                padding: 15px 10px;
+            }
+
+            .skill-card i {
+                font-size: 28px;
+                margin-bottom: 8px;
+            }
+
+            .skill-card h4 {
+                font-size: 14px;
+            }
+
+            /* Gallery Mobile */
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 20px;
+            }
+
+            .gallery-item {
+                padding: 30px 15px;
+            }
+
+            .gallery-item i {
+                font-size: 48px;
+            }
+
+            .gallery-item h4 {
+                font-size: 16px;
+            }
+
+            /* Contact Mobile */
+            .contact-item {
+                padding: 15px;
+                gap: 15px;
+            }
+
+            .contact-item i {
+                font-size: 32px;
+            }
+
+            .contact-item a {
+                font-size: 16px;
+            }
+
+            .content-wrapper {
+                padding: 0 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            section {
+                padding: 30px 15px;
+                min-height: auto;
+                padding-top: 100px;
+            }
+
+            h1 {
+                font-size: 45px;
+                margin-bottom: 15px;
+            }
+
+            h2 {
+                font-size: 32px;
+                margin-bottom: 25px;
+            }
+
+            h3 {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            section p {
+                font-size: 15px;
+            }
+
+            /* Weather Widget Extra Small */
+            .weather-widget {
+                top: 10px;
+                left: 10px;
+                padding: 10px 12px;
+                border-radius: 8px;
+            }
+
+            .weather-widget i {
+                font-size: 20px;
+            }
+
+            .weather-temp {
+                font-size: 14px;
+            }
+
+            .weather-location {
+                font-size: 10px;
+            }
+
+            /* Navigation Extra Small */
+            nav {
+                top: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                padding: 8px 10px;
+                gap: 8px;
+                border-radius: 8px;
+            }
+
+            nav a {
+                font-size: 11px;
+                gap: 4px;
+            }
+
+            nav a i {
+                font-size: 14px;
+            }
+
+            /* Skills Grid Extra Small */
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 10px;
+            }
+
+            .skill-card {
+                padding: 12px 8px;
+                border-radius: 8px;
+            }
+
+            .skill-card i {
+                font-size: 24px;
+                margin-bottom: 6px;
+            }
+
+            .skill-card h4 {
+                font-size: 12px;
+            }
+
+            /* Gallery Extra Small */
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .gallery-item {
+                padding: 25px 12px;
+            }
+
+            .gallery-item i {
+                font-size: 40px;
+            }
+
+            .gallery-item h4 {
+                font-size: 15px;
+            }
+
+            /* Contact Extra Small */
+            .contact-item {
+                padding: 12px;
+                margin: 12px 0;
+                gap: 12px;
+            }
+
+            .contact-item i {
+                font-size: 28px;
+            }
+
+            .contact-item a {
+                font-size: 14px;
+            }
+
+            .content-wrapper {
+                max-width: 100%;
+            }
+
+            .about-content {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Pond background with koi fish -->
+    <div class="pond-background">
+        <div class="pond-water"></div>
+        
+        <!-- Lily Pads -->
+        <div class="lily-pad home"></div>
+        <div class="lily-pad about"></div>
+        <div class="lily-pad skills"></div>
+        
+        <div class="koi koi-1">
+            <div class="koi-body">
+                <div class="koi-eye"></div>
+            </div>
+        </div>
+        <div class="koi koi-2">
+            <div class="koi-body">
+                <div class="koi-eye"></div>
+            </div>
+        </div>
+        <div class="koi koi-3">
+            <div class="koi-body">
+                <div class="koi-eye"></div>
+            </div>
+        </div>
+        <div class="koi koi-4">
+            <div class="koi-body">
+                <div class="koi-eye"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Start Screen -->
+    <div class="game-start-screen" id="gameStartScreen">
+        <div class="game-screen-content">
+            <div id="terminalLines" class="terminal-lines" aria-hidden="false"></div>
+        </div>
+    </div>
+    <!-- Background Ambient Music -->
+    <audio id="ambientAudio" loop volume="0.7">
+        <source src="https://pixabay.com/download/audio/2022/03/24/ambient-meditative-background-music-11993.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Audio Toggle Button -->
+    <div class="audio-toggle" id="audioToggle" title="Toggle ambient music">
+        <i class="fas fa-volume-mute"></i>
+    </div>
+
+    <nav>
+        <a href="#home" class="nav-link active"><i class="fas fa-home"></i>Home</a>
+        <a href="#about" class="nav-link"><i class="fas fa-user"></i>About</a>
+        <a href="#skills" class="nav-link"><i class="fas fa-code"></i>Skills</a>
+        <a href="resume.pdf" target="_blank"><i class="fas fa-file-pdf"></i>Resume</a>
+    </nav>
+    <!-- Control buttons (outside nav, aligned to top-right) -->
+    <button class="nav-btn" title="Photography" aria-label="Photography"><i class="fas fa-camera"></i></button>
+    <button id="contactBtn" class="nav-btn" title="Contact" aria-label="Contact"><i class="fas fa-envelope"></i></button>
+    <button id="themeToggle" class="nav-btn" title="Toggle theme" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+
+    <script>
+        // Update active nav link on scroll
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Weather widget removed (was using geolocation & Open-Meteo)
+
+        // Audio Control
+        const audioToggle = document.getElementById('audioToggle');
+        const ambientAudio = document.getElementById('ambientAudio');
+        let isPlaying = false;
+
+        audioToggle.addEventListener('click', () => {
+            if (isPlaying) {
+                ambientAudio.pause();
+                audioToggle.classList.remove('playing');
+                audioToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                isPlaying = false;
+            } else {
+                ambientAudio.play().catch(err => {
+                    console.log('Audio playback failed:', err);
+                });
+                audioToggle.classList.add('playing');
+                audioToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
+                isPlaying = true;
+            }
+        });
+
+        // Update audio state when audio ends (if not looping)
+        ambientAudio.addEventListener('ended', () => {
+            audioToggle.classList.remove('playing');
+            audioToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            isPlaying = false;
+        });
+
+        // Game Start Screen - Terminal boot sequence
+        const gameStartScreen = document.getElementById('gameStartScreen');
+        const terminalLinesEl = document.getElementById('terminalLines');
+
+        const bootLines = [
+            'BOOT SEQUENCE INIT...',
+            'Loading module: HOME........ OK',
+            'Parsing: ABOUT....... OK',
+            'Mounting module: SKILLS..... OK',
+            'Loading assets: PHOTOGRAPHY. OK',
+            'Establishing contact routes. OK',
+            'Indexing resume.pdf......... OK',
+            'Linking external: LinkedIn.. OK',
+            '',
+            'WELCOME: USER',
+            '',
+            'Press ENTER to continue...'
+        ];
+
+        let lineIndex = 0;
+        let charIndex = 0;
+        const typingSpeed = 30; // ms per char
+
+        function typeLine() {
+            if (lineIndex >= bootLines.length) {
+                showPrompt();
+                return;
+            }
+            const text = bootLines[lineIndex];
+            const lineEl = document.createElement('div');
+            lineEl.className = 'terminal-line';
+            terminalLinesEl.appendChild(lineEl);
+
+            function typeChar() {
+                if (charIndex < text.length) {
+                    lineEl.textContent += text.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeChar, typingSpeed);
+                } else {
+                    charIndex = 0;
+                    lineIndex++;
+                    setTimeout(typeLine, 250);
+                }
+            }
+
+            typeChar();
+        }
+
+        function showPrompt() {
+            const prompt = document.createElement('div');
+            prompt.className = 'terminal-prompt';
+            prompt.innerHTML = '<span class="prompt-text">></span><span class="cursor" aria-hidden="true"></span>';
+            terminalLinesEl.appendChild(prompt);
+
+            function startHandler(e) {
+                if (e.type === 'click' || e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    document.removeEventListener('keydown', startHandler);
+                    // play beep on user start
+                    playBeep(880, 0.08, 0.08);
+                    // scroll to top (home) and fade it in
+                    const homeSection = document.getElementById('home');
+                    if (homeSection) {
+                        homeSection.classList.add('boot-fade');
+                    }
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    gameStartScreen.classList.add('hidden');
+                    setTimeout(() => { gameStartScreen.style.display = 'none'; }, 600);
+                }
+            }
+
+            document.addEventListener('keydown', startHandler);
+            gameStartScreen.addEventListener('click', startHandler);
+        }
+
+        // Start typing on load
+        typeLine();
+
+        // Retro beep using WebAudio API
+        function playBeep(freq = 880, duration = 0.12, volume = 0.05) {
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                const ctx = new AudioContext();
+                const o = ctx.createOscillator();
+                const g = ctx.createGain();
+                o.type = 'square';
+                o.frequency.value = freq;
+                g.gain.value = volume;
+                o.connect(g);
+                g.connect(ctx.destination);
+                o.start();
+                setTimeout(() => {
+                    o.stop();
+                    try { ctx.close(); } catch (e) {}
+                }, duration * 1000);
+            } catch (err) {
+                // Audio may be blocked until user interaction; ignore errors
+                console.log('beep:', err);
+            }
+        }
+
+        // Attempt to play a small beep when the boot sequence finishes (may be blocked until user gesture)
+        // We'll also play again on explicit user start (handled above)
+        const tryBeepTimeout = setTimeout(() => { playBeep(660, 0.09, 0.04); }, 250 * bootLines.length);
+
+        // Theme toggle: persist preference in localStorage
+        const themeToggle = document.getElementById('themeToggle');
+        function applyTheme(isLight) {
+            if (isLight) document.documentElement.classList.add('light-theme');
+            else document.documentElement.classList.remove('light-theme');
+            // update icon
+            const icon = themeToggle.querySelector('i');
+            if (icon) icon.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // initialize
+        const savedTheme = localStorage.getItem('theme');
+        const prefersLight = savedTheme === 'light';
+        applyTheme(prefersLight);
+
+        themeToggle.addEventListener('click', () => {
+            const isLightNow = document.documentElement.classList.toggle('light-theme');
+            localStorage.setItem('theme', isLightNow ? 'light' : 'dark');
+            applyTheme(isLightNow);
+        });
+
+        // Contact button - opens email
+        document.addEventListener('DOMContentLoaded', () => {
+            const contactBtn = document.getElementById('contactBtn');
+            
+            contactBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.location.href = 'mailto:newtgr@gmail.com?subject=Contact%20Request&body=Hi%20Newton,%0A%0AI%20would%20like%20to%20get%20in%20touch.';
+            });
+        });
+    </script>
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <h1>Newton Grady</h1>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="content-wrapper">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <p>I'm a passionate computer engineer with a diverse skill set spanning multiple programming languages, embedded systems, and enterprise tools. My journey in technology has equipped me with the ability to tackle complex problems and deliver innovative solutions.</p>
+                <p>Throughout my career, I've worked on various projects ranging from low-level embedded systems programming to enterprise-level software solutions. I'm dedicated to continuous learning and staying current with emerging technologies in the field.</p>
+                <p>When I'm not coding, you'll find me exploring photography, capturing moments through both landscapes and urban scenes. I believe in the intersection of technical precision and creative expression.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="content-wrapper">
+            <h2>Skills</h2>
+            <p>Here's a comprehensive list of my technical skills and tools I work with.</p>
+            
+            <!-- Programming Languages -->
+            <div class="skill-section">
+                <h3>Programming Languages</h3>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-card-content">
+                            <i class="fas fa-code"></i>
+                            <h4>C</h4>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-card-content">
+                            <i class="fas fa-plus"></i>
+                            <h4>C++</h4>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-card-content">
+                            <i class="fab fa-python"></i>
+                            <h4>Python</h4>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-card-content">
+                            <i class="fab fa-html5"></i>
+                            <h4>HTML</h4>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-card-content">
+                            <i class="fab fa-js-square"></i>
+                            <h4>JavaScript</h4>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-card-content">
+                            <i class="fas fa-microchip"></i>
+                            <h4>ARM Assembly</h4>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-card-content">
+                            <i class="fab fa-swift"></i>
+                            <h4>Swift</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Development Tools -->
+            <div class="skill-section">
+                <h3>Development Tools</h3>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-card-content">
+                            <i class="fas fa-window-maximize"></i>
+                            <h4>Visual Studio</h4>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-card-content">
+                            <i class="fab fa-git-alt"></i>
+                            <h4>Git</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enterprise & Collaboration -->
+            <div class="skill-section">
+                <h3>Enterprise & Collaboration</h3>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-card-content">
+                            <i class="fas fa-cloud"></i>
+                            <h4>Azure DevOps</h4>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-card-content">
+                            <i class="fas fa-tools"></i>
+                            <h4>Capital Harness</h4>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-card-content">
+                            <i class="fas fa-brain"></i>
+                            <h4>Capital Logic</h4>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-card-content">
+                            <i class="fas fa-cube"></i>
+                            <h4>IBM ELM</h4>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-card-content">
+                            <i class="fas fa-book"></i>
+                            <h4>IBM Rational Publishing Engine</h4>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-card-content">
+                            <i class="fas fa-file-word"></i>
+                            <h4>Microsoft Office</h4>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-card-content">
+                            <i class="fas fa-share-alt"></i>
+                            <h4>Sharepoint</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photography removed from main scroll; icon remains in nav -->
+
+    <!-- Contact section removed; contact links are available in the footer -->
+
+
+</body>
+</html>
