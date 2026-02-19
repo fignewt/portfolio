@@ -843,21 +843,4 @@
         if (localStorage.getItem('theme') === 'light') {
             html.classList.add('light-theme');
         }
-        
-        // Mobile hamburger menu
-        const navToggleBtn2 = document.querySelector('.nav-toggle');
-        const navDropdown2 = document.querySelector('.nav-dropdown');
-        
-        navToggleBtn2.addEventListener('click', () => {
-            navToggleBtn2.classList.toggle('active');
-            navDropdown2.classList.toggle('active');
-        });
-        
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-dropdown a').forEach(link => {
-            link.addEventListener('click', () => {
-                navToggleBtn2.classList.remove('active');
-                navDropdown2.classList.remove('active');
-            });
-        });
     </script>
